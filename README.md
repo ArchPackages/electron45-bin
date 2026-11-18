@@ -19,6 +19,23 @@ based on Arch's `extra/electron*` packaging by **Bruno Pagani** and
 This fork is maintained by **Miroslav Pavleski** <miroslav@pavleski.net> and is
 published through the [ArchPackages pacman repository](https://archpackages.github.io/archrepo/).
 
+## Supply-chain verification
+
+The 45.3.4 archives were checked against Electron's official release data:
+
+- The x86_64 `electron` and `chromedriver` zips were downloaded independently
+  and their SHA-256 sums match both
+  [SHASUMS256.txt](https://github.com/electron/electron/releases/download/v45.3.4/SHASUMS256.txt)
+  and the GitHub release asset digests.
+- The aarch64 checksums match the official `SHASUMS256.txt` entries.
+- The archives contain only the expected Electron files: no symlinks, path
+  traversal, dotfiles, scripts, or install hooks.
+- The AUR packaging has no patches, `.install` file, or post-install code.
+  After the initial import, only `_subver`, checksums and `.SRCINFO` changed.
+
+Re-verify every version bump against `SHASUMS256.txt` before updating the
+checksums; do not accept AUR checksum changes without that comparison.
+
 ## Notes
 
 - The package repackages the official `electron-v45.3.4-linux-x64.zip` and
